@@ -15,38 +15,28 @@ public class B257 {
 	int k = scanner.nextInt();
 	int q = scanner.nextInt();
 
-	int[] a = new int[k];
-	int[] l = new int[q];
-	boolean[] cell = new boolean[n];
+	int[] a = new int[k + 1];
 
 	for (int i = 0; i < k; i++) {
 	    a[i] = scanner.nextInt();
-	    cell[a[i] - 1] = true;
-	}
-	for (int i = 0; i < q; i++) {
-	    l[i] = scanner.nextInt();
 	}
 
-	for (int i = 0; i < q; i++) {
-	    int cnt = 0;
-	    for (int j = 0; j < n; j++) {
-		if (cell[j]) {
-		    cnt += 1;
-		}
-		if (cnt == l[i] && j != n - 1) {
-		    if (!cell[j + 1]) {
-			cell[j] = false;
-			cell[j + 1] = true;
-		    }
+	a[k] = n + 1;
 
-		}
+	for (int j = 0; j < q; j++) {
+	    int l = scanner.nextInt() - 1;
+	    if (a[l] == n) {
+		continue;
 	    }
-
+	    if (a[l] + 1 == a[l + 1]) {
+		continue;
+	    }
+	    a[l] += 1;
 	}
 
-	for (int i = 0; i < cell.length; i++) {
-	    if (cell[i]) {
-		pw.print(i + 1 + " ");
+	for (int i : a) {
+	    if (i <= n) {
+		pw.print(i + " ");
 	    }
 	}
 
